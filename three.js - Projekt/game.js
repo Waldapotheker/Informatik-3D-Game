@@ -71,8 +71,47 @@ document.addEventListener('keydown', event => {
             console.log('E pressed');
             if(KEY_E = true){prompt('Kaputte Drohne: "Du hast es hierher geschafft! Leider gibt es noch nicht viel zu entdecken, doch du kannst dich gerne umschauen. :")')};
             break;
-            
-            
+
+        case 'KeyQ':
+            let KEY_Q
+            KEY_Q = true
+            robot.rotation.y = Math.PI/4.5;
+            robot.position.z -= zMovement/1.5;
+            robot.position.x -= xMovement/1.5;
+            camera.lookAt(robot.position);
+            camera.position.z -= zMovement/1.5;
+            camera.position.x -= xMovement/1.5;
+            break;
+        case 'KeyR':
+            let KEY_R
+            KEY_R = true
+            robot.rotation.y = Math.PI/-4.5;
+            robot.position.z -= zMovement/1.5;
+            robot.position.x += xMovement/1.5;
+            camera.lookAt(robot.position);
+            camera.position.z -= zMovement/1.5;
+            camera.position.x += xMovement/1.5;
+            break;
+        case 'KeyX':
+            let KEY_X
+            KEY_X = true
+            robot.rotation.y = Math.PI/1.5;
+            robot.position.z += zMovement/1.5;
+            robot.position.x -= xMovement/1.5;
+            camera.lookAt(robot.position);
+            camera.position.z += zMovement/1.5;
+            camera.position.x -= xMovement/1.5;
+            break;
+        case 'KeyC':
+            let KEY_C
+            KEY_C = true
+            robot.rotation.y = Math.PI/-1.5;
+            robot.position.z += zMovement/1.5;
+            robot.position.x += xMovement/1.5;
+            camera.lookAt(robot.position);
+            camera.position.z += zMovement/1.5;
+            camera.position.x += xMovement/1.5;
+            break;
     }
 }, false);
 
