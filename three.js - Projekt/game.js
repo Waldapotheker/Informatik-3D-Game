@@ -71,7 +71,7 @@ document.addEventListener('keydown', event => {
             console.log('E pressed');
             if(KEY_E = true){prompt('Kaputte Drohne: "Du hast es hierher geschafft! Leider gibt es noch nicht viel zu entdecken, doch du kannst dich gerne umschauen. :")')};
             break;
-
+//Code Jonas Luster
         case 'KeyQ':
             let KEY_Q
             KEY_Q = true
@@ -112,6 +112,7 @@ document.addEventListener('keydown', event => {
             camera.position.z += zMovement/1.5;
             camera.position.x += xMovement/1.5;
             break;
+//Code Jonas Luster Ende
     }
 }, false);
 
@@ -380,13 +381,13 @@ tree2_loader.load('./models/enemy/oak_tree/oak_scene.gltf',(tree2) => {
 });
 
 
-//Code von Jonas Luster
+//Code Jonas Luster
 //Implementierung Baum
-let tree3 ;
+let Tree3 ;
 let tree3_mixer;
 const tree3_loader = new GLTFLoader();
 tree3_loader.load('./models/enemy/oak_tree/oak_scene.gltf',(tree3) => {
-    tree3 = tree3;
+    Tree3 = tree3;
     tree3.scene.scale.set(2.5, 2.5, 2.5);
     tree3.scene.position.set(-3,0,-2)
     tree3_mixer = new THREE.AnimationMixer(tree3.scene);
