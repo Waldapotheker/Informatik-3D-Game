@@ -153,8 +153,8 @@ let enemy_mixer;
 
 //boden + textur
 
-const floorTexture = new THREE.TextureLoader().load('textures/floor/Steinfurnier-Mars.jpg');
-const geometry = new THREE.BoxGeometry( 100, 1, 100 );
+const floorTexture = new THREE.TextureLoader().load('textures/floor/Boden-Erde-Steine_A_P4171308.jpg');
+const geometry = new THREE.BoxGeometry( 10, 1, 10 );
 const material = new THREE.MeshBasicMaterial( { map: floorTexture } );
 const cube = new THREE.Mesh( geometry, material );
 
