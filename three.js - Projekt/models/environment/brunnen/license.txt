@@ -1,0 +1,11 @@
+Model Information:
+* title:	Well and barrels, 5 drafts with textures
+* source:	https://sketchfab.com/3d-models/well-and-barrels-5-drafts-with-textures-47be56d0f3e14fd0a6fb8afd8ce07a0b
+* author:	Bansheeva (https://sketchfab.com/Bansheeva)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Well and barrels, 5 drafts with textures" (https://sketchfab.com/3d-models/well-and-barrels-5-drafts-with-textures-47be56d0f3e14fd0a6fb8afd8ce07a0b) by Bansheeva (https://sketchfab.com/Bansheeva) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
