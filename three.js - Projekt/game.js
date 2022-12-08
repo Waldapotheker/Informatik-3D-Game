@@ -141,22 +141,6 @@ const renderer = new THREE.WebGLRenderer();
 
 
 
-//Audio Listener für Geräusche
-
-const listener = new THREE.audioListener();
-camera.add(audioListener)
-
-//AudioLoader um sfx zu laden
-const sound = new THREE.AudioLoader();
-AudioLoader.load('', function(buffer){
-    sound.setBuffer(buffer);
-    sound.setLoop(true);
-    sound.setVolume(0.5);
-    sound.play();
-})
-
-
-
 
 renderer.setSize( window.innerWidth, window.innerHeight );
 document.body.appendChild( renderer.domElement );
@@ -227,6 +211,53 @@ enemy_loader.load('./models/enemy/cam drone/enemy_scene.gltf',(enemy) => {
     scene.add(enemy.scene);
     
 });
+
+let apple;
+let score = 0;
+
+for (i=0; i<10; i++){
+    appleSpawn(i)
+}
+
+while (score <= 10){
+    appleSpawn( function(i){
+        setTimeout(() => {
+
+            const appleLoader = new THREE.BoxGeometry();
+            const appleMaterial = new THREE.MeshBasicMaterial({});
+            const apple = new THREE.Mesh(appleMaterial, appleLoader)
+
+                console.log();
+
+                apple.position.z = Math.round(Math.random()*(3 - (-3)) + (-3));
+
+                apple.position.x = Math.round(Math.random()*(3 - (-3)) + (-3));
+
+                apple.position.y = 0.1;
+
+                mixer = new THREE.AnimationMixer(gltf.scene);
+
+                gltf.animations.forEach((clip) => {
+                    mixer.clipAction(clip).play();
+                });
+                
+                scene.add(apple);
+                
+
+            
+        },20000*1, timeout);
+    }) 
+
+}           
+
+            
+        
+
+            
+    
+
+
+ 
 
 
 
