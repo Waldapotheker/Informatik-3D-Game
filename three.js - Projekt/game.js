@@ -8,6 +8,11 @@ import { GLTFLoader } from 'https://cdn.jsdelivr.net/npm/three@0.118.1/examples/
 import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.118/examples/jsm/controls/OrbitControls.js';
 
 
+alert(
+    'Willkommen zu unserer Tech-Demo:)\n\nSteuerung:\nW -> vorwärts\nA -> links\nS -> zurück\nD -> rechts\nQ -> links-vorwärts\nE -> rechts-vorwärts\nY -> links-zurück\nX -> rechts-zurück\nF -> interagieren\nF11 -> Full-Screen'
+);
+
+
 
 //neue scene mit Kamera
 
@@ -65,11 +70,11 @@ document.addEventListener('keydown', event => {
             camera.position.x += xMovement;
             console.log('D pressed');
             break;
-        case 'KeyE':
-            let KEY_E
-            KEY_E = true;
-            console.log('E pressed');
-            if(KEY_E = true){prompt('Kaputte Drohne: "Du hast es hierher geschafft! Leider gibt es noch nicht viel zu entdecken, doch du kannst dich gerne umschauen. :")')};
+        case 'KeyF':
+            let KEY_F
+            KEY_F = true;
+            console.log('F pressed');
+            if(KEY_F = true){prompt('Kaputte Drohne:\n"Du hast es hierher geschafft! Leider gibt es noch nicht viel zu entdecken, doch du kannst dich gerne umschauen. :")')};
             break;
 //Code Jonas Luster
         case 'KeyQ':
@@ -82,9 +87,9 @@ document.addEventListener('keydown', event => {
             camera.position.z -= zMovement/1.5;
             camera.position.x -= xMovement/1.5;
             break;
-        case 'KeyR':
-            let KEY_R
-            KEY_R = true
+        case 'KeyE':
+            let KEY_E
+            KEY_E = true
             robot.rotation.y = Math.PI/-4.5;
             robot.position.z -= zMovement/1.5;
             robot.position.x += xMovement/1.5;
@@ -92,9 +97,9 @@ document.addEventListener('keydown', event => {
             camera.position.z -= zMovement/1.5;
             camera.position.x += xMovement/1.5;
             break;
-        case 'KeyX':
-            let KEY_X
-            KEY_X = true
+        case 'KeyZ':
+            let KEY_Z
+            KEY_Z = true
             robot.rotation.y = Math.PI/1.5;
             robot.position.z += zMovement/1.5;
             robot.position.x -= xMovement/1.5;
@@ -102,9 +107,9 @@ document.addEventListener('keydown', event => {
             camera.position.z += zMovement/1.5;
             camera.position.x -= xMovement/1.5;
             break;
-        case 'KeyC':
-            let KEY_C
-            KEY_C = true
+        case 'KeyX':
+            let KEY_X
+            KEY_X = true
             robot.rotation.y = Math.PI/-1.5;
             robot.position.z += zMovement/1.5;
             robot.position.x += xMovement/1.5;
@@ -121,9 +126,9 @@ document.addEventListener('keydown', event => {
 
 //interval, in der die console gecleared wird
 
-//setInterval(function(){
-  //  console.clear();
-//}, 10000);
+setInterval(function(){
+    console.clear();
+}, 10000);
 
 
 
@@ -131,7 +136,27 @@ document.addEventListener('keydown', event => {
 //renderer und bewegung der camera
 
 const renderer = new THREE.WebGLRenderer();
-const controls = new OrbitControls(camera, renderer.domElement);
+//const controls = new OrbitControls(camera, renderer.domElement);
+
+
+
+
+//Audio Listener für Geräusche
+
+const listener = new THREE.audioListener();
+camera.add(audioListener)
+
+//AudioLoader um sfx zu laden
+const sound = new THREE.AudioLoader();
+AudioLoader.load('', function(buffer){
+    sound.setBuffer(buffer);
+    sound.setLoop(true);
+    sound.setVolume(0.5);
+    sound.play();
+})
+
+
+
 
 renderer.setSize( window.innerWidth, window.innerHeight );
 document.body.appendChild( renderer.domElement );
@@ -151,20 +176,22 @@ let enemy_mixer;
 
 
 
-//boden + textur
+//boden + textur (forestCube)
 
 const floorTexture = new THREE.TextureLoader().load('textures/floor/Boden-Erde-Steine_A_P4171308.jpg');
 const geometry = new THREE.BoxGeometry( 10, 1, 10 );
 const material = new THREE.MeshBasicMaterial( { map: floorTexture } );
-const cube = new THREE.Mesh( geometry, material );
+const forestCube = new THREE.Mesh( geometry, material );
 
 
-cube.position.z = 0;
-cube.position.y = -0.45;
-scene.add( cube );
+forestCube.position.z = 0;
+forestCube.position.y = -0.45;
+scene.add( forestCube );
 
-camera.position.z = 3;
-camera.position.y = 2;
+
+
+camera.position.z = 1;
+camera.position.y = 1;
 
 
 
