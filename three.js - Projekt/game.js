@@ -1,3 +1,6 @@
+//Code von Bennett Roth
+
+
 //three.js 
 
 import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.118/build/three.module.js';
@@ -62,6 +65,14 @@ document.addEventListener('keydown', event => {
             camera.position.x += xMovement;
             console.log('D pressed');
             break;
+        case 'KeyE':
+            let KEY_E
+            KEY_E = true;
+            console.log('E pressed');
+            if(KEY_E = true){prompt('Kaputte Drohne: "Du hast es hierher geschafft! Leider gibt es noch nicht viel zu entdecken, doch du kannst dich gerne umschauen. :")')};
+            break;
+            
+            
     }
 }, false);
 
@@ -70,9 +81,9 @@ document.addEventListener('keydown', event => {
 
 //interval, in der die console gecleared wird
 
-setInterval(function(){
-	console.clear();
-}, 10000);
+//setInterval(function(){
+  //  console.clear();
+//}, 10000);
 
 
 
@@ -85,11 +96,20 @@ const controls = new OrbitControls(camera, renderer.domElement);
 renderer.setSize( window.innerWidth, window.innerHeight );
 document.body.appendChild( renderer.domElement );
 
-//bezeichnungen für spielfigur
+//bezeichnungen für Modelle
+
+
 
 let mixer;
 
 let robot;
+
+let enemy;
+
+let enemy_mixer;
+
+
+
 
 //boden + textur
 
@@ -100,11 +120,15 @@ const cube = new THREE.Mesh( geometry, material );
 
 
 cube.position.z = 0;
-cube.position.y = 0;
+cube.position.y = -0.45;
 scene.add( cube );
 
 camera.position.z = 3;
 camera.position.y = 2;
+
+
+
+
 
 //laden der spielfigur
 
@@ -112,8 +136,8 @@ const gLoader = new GLTFLoader();
 gLoader.load('./models/mech_drone/scene.gltf', (gltf) => {
     console.log(gltf);
     robot = gltf.scene;
-	robot.position.z = 0;
-	robot.position.y = 0.5;
+	robot.position.z = -1;
+	robot.position.y = 0.1;
     mixer = new THREE.AnimationMixer(gltf.scene);
     gltf.animations.forEach((clip) => {
         mixer.clipAction(clip).play();
@@ -121,6 +145,25 @@ gLoader.load('./models/mech_drone/scene.gltf', (gltf) => {
 
     scene.add(gltf.scene);
 });
+
+
+//laden der anderen Drohne auf dem Boden
+
+const enemy_loader = new GLTFLoader();
+enemy_loader.load('./models/enemy/cam drone/enemy_scene.gltf',(enemy) => {
+    enemy = enemy;
+    enemy.scene.scale.set(0.001, 0.001, 0.001);
+    enemy_mixer = new THREE.AnimationMixer(enemy.scene);
+    enemy.animations.forEach((clip) => {
+        enemy_mixer.clipAction(clip).play();
+    })
+    scene.add(enemy.scene);
+    
+});
+
+
+
+
 
 
 //lichtquelle
@@ -145,7 +188,7 @@ scene.background = texture;
 
 let clock = new THREE.Clock();
 
-//funktion, damit animation gerendered wird
+//funktion, damit Spieler animation gerendered wird
 
 function animate() {
 	requestAnimationFrame( animate );
@@ -161,6 +204,9 @@ function animate() {
 	
 }
 
+
+
+
 //update funktion
 
 function update(renderer, scene, camera, controls){
@@ -172,6 +218,8 @@ function update(renderer, scene, camera, controls){
 }
 
 //ausführung der animation
+
+
 
 animate();
 
