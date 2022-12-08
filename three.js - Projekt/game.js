@@ -223,4 +223,43 @@ function update(renderer, scene, camera, controls){
 
 animate();
 
+//Abschnitt Niklas & Frederik
+
+//Game button in 3D game überflüssung
+//Bäume und Gestaltung der Fläche inplementiert
+
+let tree ;
+let tree_mixer;
+const tree_loader = new GLTFLoader();
+tree_loader.load('./models/enemy/oak_tree/oak_scene.gltf',(tree) => {
+    tree = tree;
+    tree.scene.scale.set(2, 2, 2);
+    tree.scene.position.set(-0.5,0,-1)
+    tree_mixer = new THREE.AnimationMixer(tree.scene);
+    tree.animations.forEach((clip) => {
+        tree_mixer.clipAction(clip).play();
+    })
+    scene.add(tree.scene);
+
+});
+
+let tree1 ;
+let tree1_mixer;
+const tree1_loader = new GLTFLoader();
+tree1_loader.load('./models/enemy/oak_tree/oak_scene.gltf',(tree1) => {
+    tree1 = tree1;
+    tree1.scene.scale.set(4, 4, 4);
+    tree1.scene.position.set(-1,0,-2)
+    tree1_mixer = new THREE.AnimationMixer(tree1.scene);
+    tree1.animations.forEach((clip) => {
+        tree1_mixer.clipAction(clip).play();
+    })
+    scene.add(tree1.scene);
+
+});
+
+if (robot.position==enemy.position){
+    alert("test")
+}
+
 
