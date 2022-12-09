@@ -74,7 +74,7 @@ document.addEventListener('keydown', event => {
             let KEY_F
             KEY_F = true;
             console.log('F pressed');
-            if(KEY_F = true){prompt('Kaputte Drohne:\n"Du hast es hierher geschafft! Leider gibt es noch nicht viel zu entdecken, doch du kannst dich gerne umschauen. :")')};
+            if(KEY_F = true){alert('Kaputte Drohne:\n"Du hast es hierher geschafft! Leider gibt es noch nicht viel zu entdecken, doch du kannst dich gerne umschauen. :")')};
             break;
 //Code Jonas Luster
         case 'KeyQ':
@@ -121,7 +121,114 @@ document.addEventListener('keydown', event => {
     }
 }, false);
 
+//Niklas Kijek
+//Variablen für die Position des Roboters
+var x_Richtung_Roboter=0; //Position Roboter
+var y_Richtung_Roboter=0; // Position Roboter
 
+
+
+var z1= Math.round(Math.random()*(3 - (-3)) + (-3));
+console.log(z1+"Z Koordinate");
+var x1= Math.round(Math.random()*(3 - (-3)) + (-3));
+console.log(x1+"x Koordinate");
+
+//Variablen für die Position des Apfels bzw eines bereiches des apfels
+var z_Position_Apfel = z1;
+var x_Position_Apfel =x1;
+
+
+//durch die 4 varibalen spannt sich ein bereich auf dessen Position der Roboter hitten muss damit der apfel aufgenommen werden kann
+var Apfel_P1=0;
+var Apfel_P2=0;
+var Apfel_P3=0;
+var Apfel_P4=0;
+
+
+function apfelfläche(){
+    Apfel_P1= z_Position_Apfel  +1;
+    Apfel_P2= z_Position_Apfel  -1;
+    Apfel_P3= x_Position_Apfel  +1;
+    Apfel_P4= x_Position_Apfel  -1;
+}
+
+//Wie viele Äpfel eingesammelt wurden
+var punkte_Aepfel=0;
+
+//Sobald man den Key drückt wird aus den zufällig erstellten koordinaten ein kleiner Bereich des Apfels erstellt
+//mit den If anweisungen wird überprüft ob der spieler mit seinen koordinaten die koordinaten Range des Apfels gehittet hat
+//wenn ja dann wird ein Text ausgegeben wie viele Äpfel der Spieler eingesammelt hat.
+
+//Listener vergibt die Werte für die Position des Roboters aus ob er auf einem Apfel steht
+document.addEventListener('keydown', event => {
+    var code = event.code;
+    switch(code) {
+        case 'KeyW':
+            KEY_W = true;
+
+            x_Richtung_Roboter=x_Richtung_Roboter-0.1;
+            if (x_Richtung_Roboter > Apfel_P2 && x_Richtung_Roboter<Apfel_P1){
+                if (y_Richtung_Roboter>Apfel_P4 && y_Richtung_Roboter<Apfel_P3){
+                    punkte_Aepfel=punkte_Aepfel+1;
+                    alert("Du hast nun "+ punkte_Aepfel+" Äpfel eingesammelt. Sammle weiter!");
+
+                    console.log("Du hast "+ punkte_Aepfel+" Äpfel eingesammelt");
+                    alert('Sammle weiter Äpfel');
+                    fallende_Apfel();
+
+                }
+            }
+            console.log(x_Richtung_Roboter+"z Koordinate Roboter");
+            break;
+        case 'KeyA':
+            KEY_A = true;
+            y_Richtung_Roboter=y_Richtung_Roboter-0.1;
+            if (x_Richtung_Roboter>Apfel_P2 && x_Richtung_Roboter<Apfel_P1){
+                if (y_Richtung_Roboter>Apfel_P4 && y_Richtung_Roboter<Apfel_P3){
+                    punkte_Aepfel=punkte_Aepfel+1;
+                    alert("Du hast nun "+ punkte_Aepfel+" Äpfel eingesammelt. Sammle weiter!");
+
+                    console.log("Du hast "+ punkte_Aepfel+" Äpfel eingesammelt");
+                    alert('Sammle weiter Äpfel');
+                    fallende_Apfel();
+                }
+            }
+            console.log(y_Richtung_Roboter+"x-Koordinate Roboter");
+            break;
+        case 'KeyS':
+            KEY_S = true;
+            x_Richtung_Roboter=x_Richtung_Roboter+0.1;
+            if (x_Richtung_Roboter>Apfel_P2 && x_Richtung_Roboter<Apfel_P1){
+                if (y_Richtung_Roboter>Apfel_P4 && y_Richtung_Roboter<Apfel_P3){
+                    punkte_Aepfel=punkte_Aepfel+1;
+                    alert("Du hast nun "+ punkte_Aepfel+" Äpfel eingesammelt. Sammle weiter!");
+                    console.log("Du hast "+ punkte_Aepfel+" Äpfel eingesammelt");
+                    alert('Sammle weiter Äpfel');
+                    fallende_Apfel();
+                }
+            }
+            console.log(x_Richtung_Roboter+"z Koordinate Roboter");
+            break;
+        case 'KeyD':
+            KEY_D = true;
+            y_Richtung_Roboter=y_Richtung_Roboter+0.1;
+            if (x_Richtung_Roboter>Apfel_P2 && x_Richtung_Roboter<Apfel_P1){
+                if (y_Richtung_Roboter>Apfel_P4 && y_Richtung_Roboter<Apfel_P3){
+                    punkte_Aepfel=punkte_Aepfel+1;
+                    alert("Du hast nun "+ punkte_Aepfel+" Äpfel eingesammelt. Sammle weiter!");
+
+                    console.log("Du hast "+ punkte_Aepfel+" Äpfel eingesammelt");
+                    alert('Sammle weiter Äpfel');
+                    fallende_Apfel();
+                }
+            }
+            console.log(y_Richtung_Roboter+"x-Koordinate Roboter");
+            break;
+    }
+}, false);
+//Ende Niklas Kijek
+
+//Weiter Bennett Roth
 
 
 //interval, in der die console gecleared wird
@@ -136,7 +243,7 @@ document.addEventListener('keydown', event => {
 //renderer und bewegung der camera
 
 const renderer = new THREE.WebGLRenderer();
-const controls = new OrbitControls(camera, renderer.domElement);
+//const controls = new OrbitControls(camera, renderer.domElement);
 
 
 
@@ -283,10 +390,12 @@ function update(renderer, scene, camera, controls){
 
 
 animate();
+//Ende Bennett Roth
 
 //Code von Niklas Kijek
 //Game button in 3D game überflüssig geworden
 //Bäume und sämtliche objekte zur Gestaltung der Fläche inplementiert
+
 
 //Implementierung Bäume --> können geladen werden
 let tree ;
@@ -334,6 +443,7 @@ leiche_loader.load('./models/enemy/leiche/textures/scene.gltf',(leiche) => {
     scene.add(leiche.scene);
 });
 
+
 //Implementierung Haus  --> kann im Ordner nicht gefunden werden Error 404
 let haus;
 let haus_mixer;
@@ -363,7 +473,6 @@ brunnen_loader.load('./models/environment/brunnen/textures/brunnen_scene.gltf',(
     })
     scene.add(brunnen.scene);
 });
-
 
 
 //Code von Frederik Heine
@@ -428,36 +537,42 @@ let score = 0;
 let i = 0;
 
 
-while(i < 10){
+    function appleSpawn(i) {
 
-    appleSpawn(i);
-    i ++;
-}
+        setTimeout(function () {
 
-function appleSpawn(i){
+            const appleGeometry = new THREE.BoxGeometry(0.1, 0.1, 0.1);
+            const appleMaterial = new THREE.MeshBasicMaterial({color: 0xfc0000});
+            const apple = new THREE.Mesh(appleGeometry, appleMaterial);
 
-    setTimeout(function(){
-        
-        const appleGeometry = new THREE.BoxGeometry( 0.1, 0.1, 0.1 );
-        const appleMaterial = new THREE.MeshBasicMaterial( { color: 0xfc0000 } );
-        const apple = new THREE.Mesh( appleGeometry, appleMaterial );
-    
+            apfelfläche();
+            apple.position.z = z1
 
+            apple.position.x = x1
 
-            console.log('penis');
-
-            apple.position.z = Math.round(Math.random()*(3 - (-3)) + (-3));
-
-            apple.position.x = Math.round(Math.random()*(3 - (-3)) + (-3));
 
             apple.position.y = 0.1;
-            
+
             scene.add(apple);
-},30000*i)
-};   
+        }, 10000 * i)
+    };
 
 
+while (i < 10) {
 
+    appleSpawn(i);
+    i++;
+}
+
+function fallende_Apfel(){
+    var z1= Math.round(Math.random()*(3 - (-3)) + (-3));
+    console.log(z1+"Z Koordinate");
+    var x1= Math.round(Math.random()*(3 - (-3)) + (-3));
+    console.log(x1+"x Koordinate");
+    appleSpawn(i);
+
+
+}
         
     
         
