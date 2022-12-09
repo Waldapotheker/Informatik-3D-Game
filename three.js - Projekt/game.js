@@ -126,9 +126,9 @@ document.addEventListener('keydown', event => {
 
 //interval, in der die console gecleared wird
 
-setInterval(function(){
-    console.clear();
-}, 10000);
+//setInterval(function(){
+    //console.clear();
+//}, 10000);
 
 
 
@@ -136,7 +136,7 @@ setInterval(function(){
 //renderer und bewegung der camera
 
 const renderer = new THREE.WebGLRenderer();
-//const controls = new OrbitControls(camera, renderer.domElement);
+const controls = new OrbitControls(camera, renderer.domElement);
 
 
 
@@ -212,43 +212,6 @@ enemy_loader.load('./models/enemy/cam drone/enemy_scene.gltf',(enemy) => {
     
 });
 
-let apple;
-let score = 0;
-
-for (i=0; i<10; i++){
-    appleSpawn(i)
-}
-
-while (score <= 10){
-    appleSpawn( function(i){
-        setTimeout(() => {
-
-            const appleLoader = new THREE.BoxGeometry();
-            const appleMaterial = new THREE.MeshBasicMaterial({});
-            const apple = new THREE.Mesh(appleMaterial, appleLoader)
-
-                console.log();
-
-                apple.position.z = Math.round(Math.random()*(3 - (-3)) + (-3));
-
-                apple.position.x = Math.round(Math.random()*(3 - (-3)) + (-3));
-
-                apple.position.y = 0.1;
-
-                mixer = new THREE.AnimationMixer(gltf.scene);
-
-                gltf.animations.forEach((clip) => {
-                    mixer.clipAction(clip).play();
-                });
-                
-                scene.add(apple);
-                
-
-            
-        },20000*1, timeout);
-    }) 
-
-}           
 
             
         
@@ -455,3 +418,46 @@ tree3_loader.load('./models/enemy/oak_tree/oak_scene.gltf',(tree3) => {
     scene.add(tree3.scene);
 
 });
+
+
+//Code von Franz
+
+
+let apple;
+let score = 0;
+let i = 0;
+
+
+while(i < 10){
+
+    appleSpawn(i);
+    i ++;
+}
+
+function appleSpawn(i){
+
+    setTimeout(function(){
+        
+        const appleGeometry = new THREE.BoxGeometry( 0.1, 0.1, 0.1 );
+        const appleMaterial = new THREE.MeshBasicMaterial( { color: 0xfc0000 } );
+        const apple = new THREE.Mesh( appleGeometry, appleMaterial );
+    
+
+
+            console.log('penis');
+
+            apple.position.z = Math.round(Math.random()*(3 - (-3)) + (-3));
+
+            apple.position.x = Math.round(Math.random()*(3 - (-3)) + (-3));
+
+            apple.position.y = 0.1;
+            
+            scene.add(apple);
+},30000*i)
+};   
+
+
+
+        
+    
+        
